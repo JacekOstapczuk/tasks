@@ -25,13 +25,13 @@ public class TrelloClient {
     private String trelloAppKey;
     @Value("${trello.app.token}")
     private String trelloToken;
-    @Value("{$trello.app.username}")
+    @Value("${trello.app.username}")
     private String username;
-    private String usernameUrl = "/members/" + username +"/boards";
+
 
 
     public List<TrelloBoardDto> getTrelloBoards() {
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + usernameUrl)
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + buildUrl())
                 .queryParam("key", trelloAppKey)
                 .queryParam("token", trelloToken)
                 .queryParam("fields", "name,id")
@@ -44,5 +44,9 @@ public class TrelloClient {
         return Optional.ofNullable(boardsResponse)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
+    }
+
+    private String buildUrl (){
+        return "/members/" + username +"/boards";
     }
 }
