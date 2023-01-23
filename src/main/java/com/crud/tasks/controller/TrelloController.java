@@ -4,15 +4,13 @@ import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.TrelloService;
-import com.crud.tasks.trello.client.TrelloClient;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Value
+
 
 
 @RestController
@@ -24,7 +22,6 @@ public class TrelloController {
     private final TrelloService trelloService;
 
     @GetMapping("boards")
-
         public ResponseEntity<List<TrelloBoardDto>> getTrelloBoards(){
         return ResponseEntity.ok(trelloService.fetchTrelloBoards());
     }
