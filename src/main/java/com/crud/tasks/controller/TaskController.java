@@ -5,7 +5,6 @@ import com.crud.tasks.controller.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +23,9 @@ public class TaskController {
 
     @GetMapping
   public ResponseEntity <List<TaskDto>> getTasks() {
-      List<Task> tasks = service.getAllTasks();
-      return ResponseEntity.ok (taskMapper.mapToTaskDtoList(tasks));
-  }
+        List<Task> tasks = service.getAllTasks();
+        return ResponseEntity.ok(taskMapper.mapToTaskDtoList(tasks));
+    }
 
     @GetMapping(value = "{taskId}")
     public ResponseEntity<TaskDto> getTask(@PathVariable Long taskId) throws TaskNotFoundException {
