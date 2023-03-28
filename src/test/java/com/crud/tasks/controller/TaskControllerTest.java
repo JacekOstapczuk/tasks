@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -78,15 +79,15 @@ class TaskControllerTest {
         taskListDto.add(taskDto1);
         taskListDto.add(taskDto2);
 
-        when(taskMapper.mapToTaskDto (service.getTask(any()))).thenReturn(taskDto2);  //Czy tu może być np 2L
+        when(taskMapper.mapToTaskDto (any())).thenReturn(taskDto2);  //Czy tu może być np 2L
 
         //When & Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/v1/tasks/2")
+                        .get("/v1/tasks/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.is(taskDto2)));// nie mogę porównywac do DTO ??
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.is( taskDto2)));// nie mogę porównywac do DTO ??
         // i tworzyć 3 testy czy jest obejście
     }
 
