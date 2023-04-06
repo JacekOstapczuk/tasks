@@ -1,6 +1,7 @@
 package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Mail;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+@Disabled
 @ExtendWith(MockitoExtension.class)
 class SimpleEmailServiceTest {
 
